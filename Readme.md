@@ -1,6 +1,6 @@
 To run
 
-```
+```bash
 cd EfCore6SplitQueryConcurrencyBug
 dotnet ef database update -- YOUR-DB-PASSWORD
 
