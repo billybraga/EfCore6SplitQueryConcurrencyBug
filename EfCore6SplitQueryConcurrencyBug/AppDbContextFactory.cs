@@ -14,16 +14,16 @@ namespace EfCore6SplitQueryConcurrencyBug
         
         public static AppDbContext Create(string[] args)
         {
+            var dbArgs = args.Where(x => !x.StartsWith("--")).ToArray();
             var conStringBuilder = new SqlConnectionStringBuilder
             {
-                Password = args.ElementAtOrDefault(0) ?? throw new Exception("provide sa password"),
-                UserID = args.ElementAtOrDefault(1) ?? "sa",
-                DataSource = args.ElementAtOrDefault(2) ?? "127.0.0.1,1433",
+                Password = dbArgs.ElementAtOrDefault(0) ?? throw new Exception("provide sa password"),
+                UserID = dbArgs.ElementAtOrDefault(1) ?? "sa",
+                DataSource = dbArgs.ElementAtOrDefault(2) ?? "127.0.0.1,1433",
                 InitialCatalog = "ef-row-number-bug-test-db",
             };
 
-            var useWorkaround = args.Length > 1
-                && args[1].Equals("true", StringComparison.OrdinalIgnoreCase);
+            var useWorkaround = args.Any(x => x == "--workaround");
             return new AppDbContext(conStringBuilder.ConnectionString, useWorkaround);
         }
     }

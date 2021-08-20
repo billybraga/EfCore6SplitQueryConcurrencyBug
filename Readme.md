@@ -12,5 +12,5 @@ dotnet run -- YOUR-DB-PASSWORD
 
 # Will use MemoryCacheExceptCommandCacheKey IMemoryCache implementation to avoid bug
 # and will finish successfuly
-dotnet run -- YOUR-DB-PASSWORD true
+dotnet run -- YOUR-DB-PASSWORD --workaround
 ```

@@ -40,7 +40,7 @@ namespace EfCore6SplitQueryConcurrencyBug
             
             if (this.useConditionalMemoryCacheWorkaround)
             {
-                optionsBuilder.UseMemoryCache(Cache);
+                optionsBuilder = optionsBuilder.UseMemoryCache(Cache);
             }
             
             base.OnConfiguring(optionsBuilder);
